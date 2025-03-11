@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import lombok.extern.slf4j.Slf4j;
@@ -19,10 +20,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @Slf4j
@@ -92,6 +90,23 @@ public class DocumentController {
     } catch (Exception e) {
       log.error("Erro inesperado ao processar o download do arquivo: {}", fileName, e);
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+    }
+  }
+
+  @DeleteMapping("/delete")
+  @Operation(summary = "Deleta um documento", description = "Deleta um documento pelo nome")
+  @ApiResponse(responseCode = "200", description = "Documento deletado com sucesso")
+  @ApiResponse(responseCode = "404", description = "Documento não encontrado")
+  public ResponseEntity<String> deleteDocumento(@RequestParam(value = "name") String fileName) {
+    try {
+      Path filePath = documentoService.getDocumentByName(fileName);
+      Files.deleteIfExists(filePath);
+      documentoService.deleteDocument(fileName);
+      log.info("Documento deletado: {}", fileName);
+      return ResponseEntity.ok("Documento deletado com sucesso");
+    } catch (IOException e) {
+      log.error("Erro ao deletar o documento: {}", fileName, e);
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao deletar o documento");
     }
   }
 }

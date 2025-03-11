@@ -4,6 +4,7 @@ import com.augusto.desafio.sentry.execption.DocumentNotFoundException;
 import com.augusto.desafio.sentry.model.Document;
 import com.augusto.desafio.sentry.repository.DocumentRepository;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -72,5 +73,26 @@ public class DocumentService {
   public List<Document> getAllDocuments() {
     log.info("Buscando todos os documentos...");
     return documentoRepository.findAll();
+  }
+
+  @Transactional
+  public void deleteDocument(String name) {
+    Document document =
+        documentoRepository
+            .findByName(name)
+            .orElseThrow(() -> new DocumentNotFoundException("Documento não encontrado: " + name));
+
+    Path filePath = Paths.get(document.getFilePath());
+
+    try {
+      Files.deleteIfExists(filePath);
+      log.info("Arquivo deletado: {}", filePath);
+    } catch (IOException e) {
+      log.error("Erro ao deletar arquivo: {}", filePath, e);
+      throw new RuntimeException("Erro ao deletar arquivo", e);
+    }
+
+    documentoRepository.delete(document);
+    log.info("Documento deletado do banco: {}", name);
   }
 }
