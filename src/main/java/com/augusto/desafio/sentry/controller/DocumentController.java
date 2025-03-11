@@ -5,16 +5,21 @@ import com.augusto.desafio.sentry.model.Document;
 import com.augusto.desafio.sentry.service.DocumentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import java.io.File;
+import jakarta.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -50,12 +55,43 @@ public class DocumentController {
     Path targetLocation = fileStorageLocation.resolve(fileName);
     log.info("Salvando o Documento no caminho: {}", fileStorageLocation);
 
-    String filePath = targetLocation + File.separator + file.getOriginalFilename();
-
     file.transferTo(targetLocation);
 
     return ResponseEntity.status(HttpStatus.CREATED)
-        .contentType(MediaType.APPLICATION_JSON) // Define o cabeçalho Content-Type
-        .body(documentoService.createDocument(name, filePath, file));
+        .contentType(MediaType.APPLICATION_JSON)
+        .body(documentoService.createDocument(name, targetLocation.toString(), file));
+  }
+
+  @GetMapping("/download")
+  @Operation(
+      summary = "Obtém um documento pelo name",
+      description = "Retorna o arquivo do documento se encontrado")
+  @ApiResponse(responseCode = "200", description = "Arquivo do documento retornado com sucesso")
+  @ApiResponse(responseCode = "404", description = "Documento não encontrado")
+  public ResponseEntity<Resource> createDocumento(
+      @RequestParam(value = "name") String fileName, HttpServletRequest request) {
+    try {
+      Path filePath = documentoService.getDocumentByName(fileName);
+      Resource resource = new UrlResource(filePath.toUri());
+
+      String contentType =
+          request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
+      if (contentType == null) {
+        contentType = "application/octet-stream";
+      }
+
+      return ResponseEntity.ok()
+          .contentType(MediaType.parseMediaType(contentType))
+          .header(
+              HttpHeaders.CONTENT_DISPOSITION,
+              "attachment; filename=\"" + resource.getFilename() + "\"")
+          .body(resource);
+    } catch (MalformedURLException e) {
+      log.error("URL malformada para o arquivo: {}", fileName);
+      return ResponseEntity.badRequest().body(null);
+    } catch (Exception e) {
+      log.error("Erro inesperado ao processar o download do arquivo: {}", fileName, e);
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+    }
   }
 }
