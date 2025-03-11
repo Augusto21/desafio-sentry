@@ -17,7 +17,6 @@
       <change afterPath="$PROJECT_DIR$/uploads/teste.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/augusto/desafio/sentry/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/augusto/desafio/sentry/Application.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -164,7 +163,23 @@
       <option name="project" value="LOCAL" />
       <updated>1741655963900</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Inicial Commit">
+      <option name="closed" value="true" />
+      <created>1741728496182</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1741728496182</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Inicial Commit">
+      <option name="closed" value="true" />
+      <created>1741728508877</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1741728508877</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -177,47 +192,47 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/augusto/desafio/sentry/controller/DocumentController.java</url>
-          <line>45</line>
+          <line>38</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/augusto/desafio/sentry/controller/DocumentController.java</url>
-          <line>54</line>
+          <line>47</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/augusto/desafio/sentry/controller/DocumentController.java</url>
-          <line>55</line>
+          <line>48</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/augusto/desafio/sentry/controller/DocumentController.java</url>
-          <line>59</line>
+          <line>52</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/augusto/desafio/sentry/controller/DocumentController.java</url>
-          <line>62</line>
+          <line>55</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/augusto/desafio/sentry/controller/DocumentController.java</url>
-          <line>61</line>
+          <line>54</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/augusto/desafio/sentry/controller/DocumentController.java</url>
-          <line>63</line>
+          <line>56</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/augusto/desafio/sentry/controller/DocumentController.java</url>
-          <line>64</line>
+          <line>57</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/augusto/desafio/sentry/controller/DocumentController.java</url>
-          <line>65</line>
+          <line>58</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
