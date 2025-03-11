@@ -54,9 +54,6 @@ public class DocumentController {
 
     file.transferTo(targetLocation);
 
-    log.info("Nome do Path: {}", fileStorageLocation);
-    log.info("Nome do Arquivo Normalizado {}", fileName);
-
     return ResponseEntity.status(HttpStatus.CREATED)
         .contentType(MediaType.APPLICATION_JSON) // Define o cabeçalho Content-Type
         .body(documentoService.createDocument(name, filePath, file));

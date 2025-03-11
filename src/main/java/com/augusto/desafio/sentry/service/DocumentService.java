@@ -36,15 +36,7 @@ public class DocumentService {
     return savedDocumento;
   }
 
-  public Document getDocumentById(Long id) {
-    log.info("Buscando documento com ID: {}", id);
-    return documentoRepository
-        .findById(id)
-        .orElseThrow(
-            () -> new DocumentNotFoundException("Documento com ID " + id + " não encontrado"));
-  }
-
-  public List<Document> getAllDocumentos() {
+  public List<Document> getAllDocuments() {
     log.info("Buscando todos os documentos...");
     return documentoRepository.findAll();
   }
