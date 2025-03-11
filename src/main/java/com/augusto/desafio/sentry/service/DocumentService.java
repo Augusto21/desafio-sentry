@@ -95,4 +95,35 @@ public class DocumentService {
     documentoRepository.delete(document);
     log.info("Documento deletado do banco: {}", name);
   }
+
+  @Transactional
+  public Document updateDocument(String name, String newName, MultipartFile file) {
+    Document document =
+        documentoRepository
+            .findByName(name)
+            .orElseThrow(() -> new DocumentNotFoundException("Documento não encontrado: " + name));
+
+    if (newName != null && !newName.isEmpty()) {
+      document.setName(newName);
+    }
+
+    if (file != null && !file.isEmpty()) {
+      Path oldFilePath = Paths.get(document.getFilePath());
+      Path newFilePath = oldFilePath.getParent().resolve(file.getOriginalFilename());
+
+      try {
+        Files.deleteIfExists(oldFilePath);
+        file.transferTo(newFilePath.toFile());
+        document.setFilePath(newFilePath.toString());
+        document.setSize(file.getSize());
+        log.info("Arquivo atualizado para: {}", newFilePath);
+      } catch (IOException e) {
+        log.error("Erro ao atualizar o arquivo: {}", newFilePath, e);
+        throw new RuntimeException("Erro ao atualizar o arquivo", e);
+      }
+    }
+
+    document.setUpdatedAt(LocalDateTime.now());
+    return documentoRepository.save(document);
+  }
 }

@@ -109,4 +109,23 @@ public class DocumentController {
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao deletar o documento");
     }
   }
+
+  @PutMapping("/update")
+  @Operation(summary = "Atualiza um documento", description = "Atualiza um documento existente")
+  @ApiResponse(responseCode = "200", description = "Documento atualizado com sucesso")
+  @ApiResponse(responseCode = "404", description = "Documento não encontrado")
+  public ResponseEntity<Document> updateDocumento(
+          @RequestParam(value = "name") String fileName,
+          @RequestParam(value = "newName", required = false) String newName,
+          @RequestParam(value = "file", required = false) MultipartFile file) {
+    try {
+      Document updatedDocument = documentoService.updateDocument(fileName, newName, file);
+      log.info("Documento atualizado: {}", fileName);
+      return ResponseEntity.ok(updatedDocument);
+    } catch (Exception e) {
+      log.error("Erro ao atualizar o documento: {}", fileName, e);
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+    }
+  }
+
 }

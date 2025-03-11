@@ -74,6 +74,16 @@ class DocumentServiceTest {
   }
 
   @Test
+  void deveAtualizarDocumentoComSucesso() {
+    when(documentRepository.findByName("teste")).thenReturn(Optional.of(document));
+    when(documentRepository.save(any(Document.class))).thenReturn(document);
+
+    Document updatedDocument = documentService.updateDocument("teste", "novoTeste", file);
+
+    assertNotNull(updatedDocument);
+    assertEquals("novoTeste", updatedDocument.getName());
+  }
+  @Test
   void deveDeletarDocumentoComSucesso() throws IOException {
     when(documentRepository.findByName("teste")).thenReturn(Optional.of(document));
     doNothing().when(documentRepository).delete(any(Document.class));
@@ -82,4 +92,6 @@ class DocumentServiceTest {
 
     verify(documentRepository, times(1)).delete(document);
   }
+
+
 }
