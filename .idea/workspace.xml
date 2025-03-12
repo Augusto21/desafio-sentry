@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f2239eca-7483-4141-a4f8-76610ec0990e" name="Changes" comment="feat: Adicionando endpoint de deletar o arquivo e o seu teste.">
+    <list default="true" id="f2239eca-7483-4141-a4f8-76610ec0990e" name="Changes" comment="feat: Adicionando endpoint update do arquivo e o seu teste.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/augusto/desafio/sentry/config/ApiKeyFilter.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/augusto/desafio/sentry/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/teste2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/novoTeste2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/teste1.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/augusto/desafio/sentry/controller/DocumentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/augusto/desafio/sentry/controller/DocumentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/augusto/desafio/sentry/service/DocumentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/augusto/desafio/sentry/service/DocumentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/augusto/desafio/sentry/service/DocumentServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/augusto/desafio/sentry/service/DocumentServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -266,7 +267,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741736255595</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="feat: Adicionando endpoint update do arquivo e o seu teste.">
+      <option name="closed" value="true" />
+      <created>1741736796091</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1741736796091</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -276,6 +285,7 @@
     <MESSAGE value="fix: corrige nomenclatura, retirando método inutilizado e removendo log desnecessario." />
     <MESSAGE value="feat: Adicionando endpoint de busca de arquivo e criando uma trativa exclusiva." />
     <MESSAGE value="feat: Adicionando endpoint de deletar o arquivo e o seu teste." />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Adicionando endpoint de deletar o arquivo e o seu teste." />
+    <MESSAGE value="feat: Adicionando endpoint update do arquivo e o seu teste." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Adicionando endpoint update do arquivo e o seu teste." />
   </component>
 </project>
