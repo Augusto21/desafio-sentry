@@ -1,0 +1,243 @@
+{
+	"info": {
+		"_postman_id": "a9ab9b95-1b85-4421-b35d-682e2056d194",
+		"name": "TestSentry",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40239110"
+	},
+	"item": [
+		{
+			"name": "Download TesteSentry",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "7c01874c-7618-4855-9fca-d2bace2d4890",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "X-API-KEY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/documentos/download?name=Capa Teste",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos",
+						"download"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Capa Teste"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete TesteSentry",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 403\", function () {\r",
+							"    pm.response.to.have.status(403);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is within an acceptable range\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response has the required Content-Type header\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.exist;\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response body is not empty\", function () {\r",
+							"    const responseData = xml2Json(pm.response.text());\r",
+							"    \r",
+							"    pm.expect(responseData).to.exist.and.to.not.be.empty;\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response body is in valid XML format\", function () {\r",
+							"    const isValidXml = (xml) => {\r",
+							"        let parser = new DOMParser();\r",
+							"        let xmlDoc = parser.parseFromString(xml, \"text/xml\");\r",
+							"        return xmlDoc.getElementsByTagName(\"parsererror\").length === 0;\r",
+							"    };\r",
+							"\r",
+							"    pm.expect(isValidXml(pm.response.text())).to.be.true;\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "Augusto",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "test-sentry",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/documentos/delete?name=Etiqueta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Etiqueta"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload TesteSentry",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "7c01874c-7618-4855-9fca-d2bace2d4890",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "X-API-KEY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Capa Teste",
+							"type": "text"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/Augusto Camolesi/Downloads/dae6fac9dca1bdbbcfe9e0a721781b30.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update TesteSentry",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "7c01874c-7618-4855-9fca-d2bace2d4890",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "X-API-KEY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Capa Teste",
+							"type": "text"
+						},
+						{
+							"key": "newName",
+							"value": "Capa pre Natal",
+							"type": "text"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/Augusto Camolesi/Downloads/Capa Pré natal.jpeg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/documentos/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"documentos",
+						"update"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,6 +1,7 @@
 package com.augusto.desafio.sentry.controller;
 
 import com.augusto.desafio.sentry.config.DocumentStorageConfig;
+import com.augusto.desafio.sentry.execption.DocumentNotFoundException;
 import com.augusto.desafio.sentry.model.Document;
 import com.augusto.desafio.sentry.service.DocumentService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -67,9 +68,13 @@ public class DocumentController {
   @ApiResponse(responseCode = "404", description = "Documento não encontrado")
   public ResponseEntity<Resource> createDocumento(
       @RequestParam(value = "name") String fileName, HttpServletRequest request) {
+    Path filePath = documentoService.getDocumentByName(fileName);
     try {
-      Path filePath = documentoService.getDocumentByName(fileName);
       Resource resource = new UrlResource(filePath.toUri());
+
+      if (!resource.exists() || !resource.isReadable()) {
+        throw new DocumentNotFoundException("Arquivo não encontrado ou inacessível: " + filePath);
+      }
 
       String contentType =
           request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());

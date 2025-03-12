@@ -31,7 +31,7 @@ public class SwaggerConfig {
                 .addSecuritySchemes(
                     "ApiKeyAuth",
                     new SecurityScheme()
-                        .name("apiKey") // Nome do cabeçalho da API Key
+                        .name("X-API-KEY") // Nome do cabeçalho da API Key
                         .type(SecurityScheme.Type.APIKEY)
                         .in(
                             SecurityScheme.In

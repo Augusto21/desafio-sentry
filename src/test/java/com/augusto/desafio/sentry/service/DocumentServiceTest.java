@@ -77,6 +77,8 @@ class DocumentServiceTest {
   void deveAtualizarDocumentoComSucesso() {
     when(documentRepository.findByName("teste")).thenReturn(Optional.of(document));
     when(documentRepository.save(any(Document.class))).thenReturn(document);
+    when(file.getOriginalFilename()).thenReturn("novoTeste");
+    when(file.getSize()).thenReturn(1024L);
 
     Document updatedDocument = documentService.updateDocument("teste", "novoTeste", file);
 

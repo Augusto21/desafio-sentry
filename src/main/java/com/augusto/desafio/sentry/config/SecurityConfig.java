@@ -1,9 +1,7 @@
 package com.augusto.desafio.sentry.config;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
@@ -13,24 +11,29 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig {
 
-  @Value("${security.api.key}") // Carrega a API Key do application.properties
-  private String apiKey;
+  private final ApiKeyAuthFilter apiKeyAuthFilter;
+
+  public SecurityConfig(ApiKeyAuthFilter apiKeyAuthFilter) {
+    this.apiKeyAuthFilter = apiKeyAuthFilter;
+  }
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    return http.csrf(csrf -> csrf.disable()) // Desabilita CSRF para chamadas de API REST
+    return http.csrf(csrf -> csrf.disable())
         .authorizeHttpRequests(
             auth ->
-                auth.requestMatchers(HttpMethod.GET, "/swagger-ui/**", "/v3/api-docs/**")
-                    .permitAll() // Libera Swagger
+                auth.requestMatchers(
+                        "/swagger-ui/**",
+                        "/swagger-ui.html",
+                        "/v3/api-docs/**",
+                        "/v3/api-docs.yaml",
+                        "/webjars/**")
+                    .permitAll()
                     .requestMatchers("/documentos/**")
-                    .authenticated() // Protege a API de documentos
+                    .authenticated()
                     .anyRequest()
                     .authenticated())
-        .addFilterBefore(
-            new ApiKeyFilter(apiKey),
-            UsernamePasswordAuthenticationFilter
-                .class) // Adiciona filtro antes do authentication filter
+        .addFilterBefore(apiKeyAuthFilter, UsernamePasswordAuthenticationFilter.class)
         .build();
   }
 }
