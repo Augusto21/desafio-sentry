@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f2239eca-7483-4141-a4f8-76610ec0990e" name="Changes" comment="feat: Adicionando segurança com Spring Security implementando api-key." />
+    <list default="true" id="f2239eca-7483-4141-a4f8-76610ec0990e" name="Changes" comment="fix: arquivo workspace.xml">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/augusto/desafio/sentry/config/ApiKeyFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/augusto/desafio/sentry/config/ApiKeyFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/augusto/desafio/sentry/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/augusto/desafio/sentry/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/augusto/desafio/sentry/controller/DocumentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/augusto/desafio/sentry/controller/DocumentController.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -275,7 +280,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741738398416</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="fix: arquivo workspace.xml">
+      <option name="closed" value="true" />
+      <created>1741738463211</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1741738463211</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -287,6 +300,7 @@
     <MESSAGE value="feat: Adicionando endpoint de deletar o arquivo e o seu teste." />
     <MESSAGE value="feat: Adicionando endpoint update do arquivo e o seu teste." />
     <MESSAGE value="feat: Adicionando segurança com Spring Security implementando api-key." />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Adicionando segurança com Spring Security implementando api-key." />
+    <MESSAGE value="fix: arquivo workspace.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: arquivo workspace.xml" />
   </component>
 </project>
