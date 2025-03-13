@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 public interface DocumentRepository extends JpaRepository<Document, Long> {
   Optional<Document> findByName(String name);
 
-  @Query("SELECT COALESCE(SUM(d.tamanho), 0) FROM Documento d")
+  @Query("SELECT COALESCE(SUM(d.tamanho), 0) FROM document d")
   long somarTamanhoArquivos();
 
 }
